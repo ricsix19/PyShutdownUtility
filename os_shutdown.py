@@ -17,20 +17,37 @@ def shutdown():
     except ValueError:
         messagebox.showerror("Invalid number", "Enter valid number")
 
+def abort_shutdown():
+    if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
+        os.system("shutdown /a")
+    else:
+        messagebox.showerror("Error", "Unsupported OS")
+
+def exitButton():
+    if messagebox.askokcancel("Exit", "Do you really want to exit the application?"):
+        app.destroy()
+
 #Main window
 app = tk.Tk()
-app.title("Shutdown GUI")
+app.title("Shut down GUI")
 
-#Label
-label = tk.label(app, text="Enter time in seconds:")
+#Main label
+label = tk.Label(app, text="Enter time in seconds:")
 label.pack(pady=10)
 
 #Entry
-timer_entry = tk.Entry(app, width=10)
-timer_entry.pack(pady=5)
+timer_entry = tk.Entry(app, width=50)
+timer_entry.pack(pady=10, padx=20)
 
-#Button
-shutdown_button = tk.Button(app, text="Shutdown", command=shutdown, height=2, width=10)
-shutdown_button.pack(pady=20)
+#Shut down button
+shutdown_button = tk.Button(app, text="Shut down", command=shutdown, height=2, width=20)
+shutdown_button.pack(pady=10, padx=20, anchor="center")
 
+#Button for aborting shut down
+abort_shutdown_button = tk.Button(app, text="Abort shut down", command=abort_shutdown, height=2, width=20)
+abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
+
+#Exit button
+exit_button = tk.Button(app, text="Exit", command=exitButton, height=2, width=20)
+exit_button.pack(pady=10, padx=20, anchor="center")
 app.mainloop()
