@@ -19,13 +19,13 @@ def shutdown():
 
 def abort_shutdown():
     if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
-        os.system("shutdown /a")
+        os.system("shutdown /a") #/a argument will abort the ongoing shut down.
     else:
         messagebox.showerror("Error", "Unsupported OS")
 
 def exitButton():
     if messagebox.askokcancel("Exit", "Do you really want to exit the application?"):
-        app.destroy()
+        app.destroy() # "Destroys" the main app window.
 
 #Main window
 app = tk.Tk()
