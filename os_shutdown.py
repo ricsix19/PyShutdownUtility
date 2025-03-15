@@ -3,23 +3,6 @@ import platform
 import tkinter as tk
 from tkinter import messagebox
 
-# def shutdown():
-#     current_os = platform.system()
-
-    # timer = timer_entry.get()
-    # try:
-    #     timer = int(timer)
-    #     if messagebox.askokcancel("Shutdown", "Do you really want to shut down the computer?"):
-    #         if current_os == "Windows":
-    #             os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
-    #         if current_os == "Linux":
-    #             #linux_timer = timer_entry.get()
-    #             os.system(f"sudo shutdown -h {timer}")
-    #         else:
-    #             messagebox.showerror("Error", "Unsupported OS")
-    # except ValueError:
-    #     messagebox.showerror("Invalid number", "Enter valid number")
-
 def abort_shutdown():
     current_os = platform.system()
     if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
