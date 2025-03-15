@@ -34,27 +34,72 @@ def exitButton():
     if messagebox.askokcancel("Exit", "Do you really want to exit the application?"):
         app.destroy()
 
+# def on_closing(window):
+#     print("Closing window and showing main menu again.")
+#     window.destroy()
+#     app.deiconify()
+
+def windows_Display():
+    app.withdraw()
+    windows_window = tk.Toplevel(app)
+    windows_window.title("Windows")
+
+    windows_window.deiconify()
+    # windows_window.lift()
+    # windows_window.focus_force()
+
+    label = tk.Label(windows_window, text="Enter shut down time in seconds:")
+    label.pack(pady=10)
+
+    global timer_entry
+    timer_entry = tk.Entry(windows_window, width=50)
+    timer_entry.pack(pady=10, padx=20)
+
+    shutdown_button = tk.Button(windows_window, text="Shut down", command=shutdown, height=2, width=20)
+    shutdown_button.pack(pady=10, padx=20, anchor="center")
+
+    abort_shutdown_button = tk.Button(windows_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
+    abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
+
+    exit_button = tk.Button(windows_window, text="Exit", command=exitButton, height=2, width=20)
+    exit_button.pack(pady=10, padx=20, anchor="center")
+
+    # windows_window.protocol("WM_DELETE_WINDOW", lambda: on_closing(windows_window))
+
+def linux_Display():
+    app.withdraw()
+    linux_window = tk.Toplevel(app)
+    linux_window.title("Linux")
+
+    linux_window.deiconify()
+
+    label = tk.Label(linux_window, text="Enter shut down time:")
+    label.pack(pady=10)
+
+    timer_entry = tk.Entry(linux_window, width=50)
+    timer_entry.pack(pady=10, padx=20)
+
+    shutdown_button = tk.Button(linux_window, text="Shut down", command=shutdown, height=2, width=20)
+    shutdown_button.pack(pady=10, padx=20, anchor="center")
+
+    abort_shutdown_button = tk.Button(linux_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
+    abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
+
+    exit_button = tk.Button(linux_window, text="Exit", command=exitButton, height=2, width=20)
+    exit_button.pack(pady=10, padx=20, anchor="center")
+    # linux_window.protocol("WM_DELETE_WINDOW", lambda: on_closing(linux_window))
+
 #Main window
 app = tk.Tk()
 app.title("Shut down GUI")
 
-#Main label
-label = tk.Label(app, text="Enter time in seconds:")
+label = tk.Label(app, text="Choose which operating system you use!")
 label.pack(pady=10)
 
-#Entry
-timer_entry = tk.Entry(app, width=50)
-timer_entry.pack(pady=10, padx=20)
+windows_button = tk.Button(app, text="Windows", command=windows_Display, height=2, width=20)
+windows_button.pack(pady=10, padx=20, anchor="center")
 
-#Shut down button
-shutdown_button = tk.Button(app, text="Shut down", command=shutdown, height=2, width=20)
-shutdown_button.pack(pady=10, padx=20, anchor="center")
+linux_button = tk.Button(app, text="Linux", command=linux_Display, height=2, width=20)
+linux_button.pack(pady=10, padx=20, anchor="center")
 
-#Button for aborting shut down
-abort_shutdown_button = tk.Button(app, text="Abort shut down", command=abort_shutdown, height=2, width=20)
-abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
-
-#Exit button
-exit_button = tk.Button(app, text="Exit", command=exitButton, height=2, width=20)
-exit_button.pack(pady=10, padx=20, anchor="center")
 app.mainloop()
