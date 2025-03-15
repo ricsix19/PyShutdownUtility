@@ -14,6 +14,6 @@ py_osShutdown is a simple Python application that provides a graphical user inte
 - Tkinter library (usually included with Python installations)
 
 ## Future changes
-- Implementing to other Operating Systems such as Linux and MacOS
-
+- Implementing to other Operating Systems such as Linux and MacOS [x]
+- Implementing separate UIs for different Operating Systems [x]
 # Keep in mind this project is still in work!!
