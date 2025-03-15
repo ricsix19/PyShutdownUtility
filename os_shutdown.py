@@ -1,24 +1,25 @@
 import os
 import platform
 import tkinter as tk
+from http.cookiejar import cut_port_re
 from tkinter import messagebox
 
-def shutdown():
-    current_os = platform.system()
+# def shutdown():
+#     current_os = platform.system()
 
-    timer = timer_entry.get()
-    try:
-        timer = int(timer)
-        if messagebox.askokcancel("Shutdown", "Do you really want to shut down the computer?"):
-            if current_os == "Windows":
-                os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
-            if current_os == "Linux":
-                linux_timer = timer_entry.get()
-                os.system(f"sudo shutdown -h {linux_timer}")
-            else:
-                messagebox.showerror("Error", "Unsupported OS")
-    except ValueError:
-        messagebox.showerror("Invalid number", "Enter valid number")
+    # timer = timer_entry.get()
+    # try:
+    #     timer = int(timer)
+    #     if messagebox.askokcancel("Shutdown", "Do you really want to shut down the computer?"):
+    #         if current_os == "Windows":
+    #             os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
+    #         if current_os == "Linux":
+    #             #linux_timer = timer_entry.get()
+    #             os.system(f"sudo shutdown -h {timer}")
+    #         else:
+    #             messagebox.showerror("Error", "Unsupported OS")
+    # except ValueError:
+    #     messagebox.showerror("Invalid number", "Enter valid number")
 
 def abort_shutdown():
     current_os = platform.system()
@@ -45,17 +46,27 @@ def windows_Display():
     windows_window.title("Windows")
 
     windows_window.deiconify()
-    # windows_window.lift()
-    # windows_window.focus_force()
 
     label = tk.Label(windows_window, text="Enter shut down time in seconds:")
     label.pack(pady=10)
 
-    global timer_entry
     timer_entry = tk.Entry(windows_window, width=50)
     timer_entry.pack(pady=10, padx=20)
+    def windows_shutdown():
+        timer = timer_entry.get()
+        current_os = platform.system()
 
-    shutdown_button = tk.Button(windows_window, text="Shut down", command=shutdown, height=2, width=20)
+        try:
+            timer = int(timer)
+            if messagebox.askokcancel("Shutdown", "Do you really want to shut down the computer?"):
+                if current_os == "Windows":
+                    os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
+                elif current_os != "Windows":
+                    messagebox.showerror("Error", "Unsupported OS")
+        except ValueError:
+            messagebox.showerror("Invalid number", "Enter valid number")
+
+    shutdown_button = tk.Button(windows_window, text="Shut down", command=windows_shutdown, height=2, width=20)
     shutdown_button.pack(pady=10, padx=20, anchor="center")
 
     abort_shutdown_button = tk.Button(windows_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
@@ -79,7 +90,19 @@ def linux_Display():
     timer_entry = tk.Entry(linux_window, width=50)
     timer_entry.pack(pady=10, padx=20)
 
-    shutdown_button = tk.Button(linux_window, text="Shut down", command=shutdown, height=2, width=20)
+    def linux_shutdown():
+        linux_timer = timer_entry.get()
+        current_os = platform.system()
+        try:
+            if messagebox.askokcancel("Shutdown", "Do you really want to shut down the computer?"):
+                if current_os == "Linux":
+                    os.system(f"sudo shutdown -h {linux_timer}")
+                elif current_os != "Linux":
+                    messagebox.showerror("Error", "Unsupported OS")
+        except ValueError:
+            messagebox.showerror("Invalid number", "Enter valid number")
+
+    shutdown_button = tk.Button(linux_window, text="Shut down", command=linux_shutdown, height=2, width=20)
     shutdown_button.pack(pady=10, padx=20, anchor="center")
 
     abort_shutdown_button = tk.Button(linux_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
@@ -87,6 +110,7 @@ def linux_Display():
 
     exit_button = tk.Button(linux_window, text="Exit", command=exitButton, height=2, width=20)
     exit_button.pack(pady=10, padx=20, anchor="center")
+
     # linux_window.protocol("WM_DELETE_WINDOW", lambda: on_closing(linux_window))
 
 #Main window
