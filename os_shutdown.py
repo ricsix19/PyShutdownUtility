@@ -1,7 +1,6 @@
 import os
 import platform
 import tkinter as tk
-from http.cookiejar import cut_port_re
 from tkinter import messagebox
 
 # def shutdown():
