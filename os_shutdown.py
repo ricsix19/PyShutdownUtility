@@ -14,6 +14,7 @@ def shutdown():
                 os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
             if current_os == "Linux":
                 linux_timer = timer_entry.get()
+                # for security measures it stays with sudo, so no one can shut down your linux machine without your password
                 os.system(f"sudo shutdown -h {linux_timer}")
             else:
                 messagebox.showerror("Error", "Unsupported OS")
