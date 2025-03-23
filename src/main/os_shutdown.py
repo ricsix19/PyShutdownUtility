@@ -3,6 +3,13 @@ import platform
 import tkinter as tk
 from tkinter import messagebox
 
+def center_window(window):
+    window.update_idletasks()
+    width = window.winfo_width()
+    height = window.winfo_height()
+    x = (window.winfo_screenwidth() // 2) - (width // 2)
+    y = (window.winfo_screenheight() // 2) - (height // 2)
+    window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 def abort_shutdown():
     current_os = platform.system()
     if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
@@ -18,7 +25,6 @@ def exitButton():
         app.destroy()
 
 def on_closing(window):
-     print("Closing window and showing main menu again.")
      window.destroy()
      app.deiconify()
 
@@ -26,6 +32,9 @@ def windows_Display():
     app.withdraw()
     windows_window = tk.Toplevel(app)
     windows_window.title("Windows")
+
+    windows_window.geometry("300x400")
+    windows_window.resizable(False, False)
 
     windows_window.deiconify()
 
@@ -59,6 +68,8 @@ def windows_Display():
 
     back_button = tk.Button(windows_window, text="Back", command=lambda: on_closing(windows_window), height=2, width=20)
     back_button.pack(pady=10, padx=20, anchor="center")
+
+    center_window(windows_window)
 
 def linux_Display():
     app.withdraw()
