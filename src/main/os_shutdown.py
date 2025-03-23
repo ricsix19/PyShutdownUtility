@@ -110,4 +110,7 @@ windows_button.pack(pady=10, padx=20, anchor="center")
 linux_button = tk.Button(app, text="Linux", command=linux_Display, height=2, width=20)
 linux_button.pack(pady=10, padx=20, anchor="center")
 
+exit_button = tk.Button(app, text="Exit", command=exitButton, height=2, width=20)
+exit_button.pack(pady=10, padx=20, anchor="center")
+
 app.mainloop()
