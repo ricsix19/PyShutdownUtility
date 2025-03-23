@@ -60,8 +60,6 @@ def windows_Display():
     back_button = tk.Button(windows_window, text="Back", command=lambda: on_closing(windows_window), height=2, width=20)
     back_button.pack(pady=10, padx=20, anchor="center")
 
-    # windows_window.protocol("WM_DELETE_WINDOW", lambda: on_closing(windows_window))
-
 def linux_Display():
     app.withdraw()
     linux_window = tk.Toplevel(app)
@@ -96,7 +94,8 @@ def linux_Display():
     exit_button = tk.Button(linux_window, text="Exit", command=exitButton, height=2, width=20)
     exit_button.pack(pady=10, padx=20, anchor="center")
 
-    # linux_window.protocol("WM_DELETE_WINDOW", lambda: on_closing(linux_window))
+    back_button = tk.Button(linux_window, text="Back", command=lambda: on_closing(linux_window), height=2, width=20)
+    back_button.pack(pady=10, padx=20, anchor="center")
 
 #Main window
 app = tk.Tk()
