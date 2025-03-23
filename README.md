@@ -15,10 +15,11 @@ py_osShutdown is a simple Python application that provides a graphical user inte
 
 ## Future changes
 - Implementing to MacOS
-- Implementing separate UIs for different Operating Systems
-- Implementing a "Going back" button, where you click on the button and it takes you back to the original Operating System choosing page.
+
 ## Implemented changes
 - Implemented shut down methods to Linux [x]
 - Implemented separate UIs for Linux and Windows [x]
+- Implementing separate UIs for different Operating Systems [x]
+- Implementing a "Back" button, where the button takes you back to the original Operating System choosing page. [x]
 
 # Keep in mind this project is still in work!!
