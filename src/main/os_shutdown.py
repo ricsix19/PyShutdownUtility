@@ -10,6 +10,7 @@ def center_window(window):
     x = (window.winfo_screenwidth() // 2) - (width // 2)
     y = (window.winfo_screenheight() // 2) - (height // 2)
     window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+
 def abort_shutdown():
     current_os = platform.system()
     if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
@@ -119,7 +120,6 @@ app.title("Shut down GUI")
 app.geometry("300x250")
 app.resizable(False, False)
 
-
 label = tk.Label(app, text="Choose which operating system you use!")
 label.pack(pady=10)
 
@@ -133,4 +133,5 @@ exit_button = tk.Button(app, text="Exit", command=exitButton, height=2, width=20
 exit_button.pack(pady=10, padx=20, anchor="center")
 
 center_window(app)
+
 app.mainloop()
