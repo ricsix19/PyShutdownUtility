@@ -33,7 +33,7 @@ def windows_Display():
     windows_window = tk.Toplevel(app)
     windows_window.title("Windows")
 
-    windows_window.geometry("300x400")
+    windows_window.geometry("300x350")
     windows_window.resizable(False, False)
 
     windows_window.deiconify()
@@ -76,6 +76,9 @@ def linux_Display():
     linux_window = tk.Toplevel(app)
     linux_window.title("Linux")
 
+    linux_window.geometry("300x350")
+    linux_window.resizable(False, False)
+
     linux_window.deiconify()
 
     label = tk.Label(linux_window, text="Enter shut down time:")
@@ -108,9 +111,14 @@ def linux_Display():
     back_button = tk.Button(linux_window, text="Back", command=lambda: on_closing(linux_window), height=2, width=20)
     back_button.pack(pady=10, padx=20, anchor="center")
 
+    center_window(linux_window)
+
 #Main window
 app = tk.Tk()
 app.title("Shut down GUI")
+app.geometry("300x250")
+app.resizable(False, False)
+
 
 label = tk.Label(app, text="Choose which operating system you use!")
 label.pack(pady=10)
@@ -124,4 +132,5 @@ linux_button.pack(pady=10, padx=20, anchor="center")
 exit_button = tk.Button(app, text="Exit", command=exitButton, height=2, width=20)
 exit_button.pack(pady=10, padx=20, anchor="center")
 
+center_window(app)
 app.mainloop()
