@@ -1,6 +1,6 @@
-# py_osShutdown
+# PyShutdownUtility
 
-py_osShutdown is a simple Python application that provides a graphical user interface (GUI) to schedule and manage system shutdowns on operating systems.
+PyShutdownUtility is a simple Python application that provides a graphical user interface (GUI) to schedule and manage system shutdowns on operating systems.
 
 ## Features
 
