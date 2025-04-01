@@ -11,15 +11,21 @@ def center_window(window):
     y = (window.winfo_screenheight() // 2) - (height // 2)
     window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
-def abort_shutdown():
+def windows_abort_shutdown():
     current_os = platform.system()
     if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
         if current_os == "Windows":
             os.system("shutdown /a")
+    else:
+        messagebox.showerror("Error", "Wrong Operating System selected")
+
+def linux_abort_shutdown():
+    current_os = platform.system()
+    if messagebox.askokcancel("Abort shut down", "Do you really want to abort shutting down the computer?"):
         if current_os == "Linux":
             os.system("sudo shutdown -c")
     else:
-        messagebox.showerror("Error", "Unsupported OS")
+        messagebox.showerror("Error", "Wrong Operating System selected")
 
 def exitButton():
     if messagebox.askokcancel("Exit", "Do you really want to exit the application?"):
@@ -34,7 +40,7 @@ def windows_Display():
     windows_window = tk.Toplevel(app)
     windows_window.title("Windows")
 
-    windows_window.geometry("300x350")
+    windows_window.geometry("300x400")
     windows_window.resizable(False, False)
 
     windows_window.deiconify()
@@ -54,14 +60,14 @@ def windows_Display():
                 if current_os == "Windows":
                     os.system(f"shutdown /s /t {timer}")  #/s gives the os the command that it wants to shut down, /t is time in seconds
                 elif current_os != "Windows":
-                    messagebox.showerror("Error", "Unsupported OS")
+                    messagebox.showerror("Error", "Wrong Operating System selected")
         except ValueError:
             messagebox.showerror("Invalid number", "Enter valid number")
 
     shutdown_button = tk.Button(windows_window, text="Shut down", command=windows_shutdown, height=2, width=20)
     shutdown_button.pack(pady=10, padx=20, anchor="center")
 
-    abort_shutdown_button = tk.Button(windows_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
+    abort_shutdown_button = tk.Button(windows_window, text="Abort shut down", command=windows_abort_shutdown, height=2, width=20)
     abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
 
     exit_button = tk.Button(windows_window, text="Exit", command=exitButton, height=2, width=20)
@@ -77,7 +83,7 @@ def linux_Display():
     linux_window = tk.Toplevel(app)
     linux_window.title("Linux")
 
-    linux_window.geometry("300x350")
+    linux_window.geometry("300x400")
     linux_window.resizable(False, False)
 
     linux_window.deiconify()
@@ -103,7 +109,7 @@ def linux_Display():
     shutdown_button = tk.Button(linux_window, text="Shut down", command=linux_shutdown, height=2, width=20)
     shutdown_button.pack(pady=10, padx=20, anchor="center")
 
-    abort_shutdown_button = tk.Button(linux_window, text="Abort shut down", command=abort_shutdown, height=2, width=20)
+    abort_shutdown_button = tk.Button(linux_window, text="Abort shut down", command=linux_abort_shutdown, height=2, width=20)
     abort_shutdown_button.pack(pady=15, padx=20, anchor="center")
 
     exit_button = tk.Button(linux_window, text="Exit", command=exitButton, height=2, width=20)
