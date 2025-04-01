@@ -102,7 +102,7 @@ def linux_Display():
                 if current_os == "Linux":
                     os.system(f"sudo shutdown -h {linux_timer}")
                 elif current_os != "Linux":
-                    messagebox.showerror("Error", "Unsupported OS")
+                    messagebox.showerror("Error", "Wrong Operating System selected")
         except ValueError:
             messagebox.showerror("Invalid number", "Enter valid number")
 
