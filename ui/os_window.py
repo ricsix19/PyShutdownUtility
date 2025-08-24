@@ -13,7 +13,7 @@ def create_os_windows(app, title, os_name):
     label.pack(pady=10)
 
     timer_entry = tk.Entry(window, width = 50)
-    timer_entry.pack(pady=10)
+    timer_entry.pack(pady=10, padx=20)
 
     def shutdown():
         timer = timer_entry.get()
@@ -37,10 +37,10 @@ def create_os_windows(app, title, os_name):
             else:
                 platform_utils.show_worng_os_error()
 
-    tk.Button(window, text="Shutdown", command=shutdown, height=2, width=20).pack(pady=10)
-    tk.Button(window, text="Abort shutdown", command=abort, height=2, width=20).pack(pady=15)
-    tk.Button(window, text="Exit", command=app.destroy, height=2, width=20).pack(pady=10)
-    tk.Button(window, text="Back", command=lambda: back(window, app), height=2, width=20).pack(pady=10)
+    tk.Button(window, text="Shutdown", command=shutdown, height=2, width=20).pack(pady=10, padx=20, anchor="center")
+    tk.Button(window, text="Abort shutdown", command=abort, height=2, width=20).pack(pady=15, padx=20, anchor="center")
+    tk.Button(window, text="Exit", command=app.destroy, height=2, width=20).pack(pady=10, padx=20, anchor="center")
+    tk.Button(window, text="Back", command=lambda: back(window, app), height=2, width=20).pack(pady=10, padx=20, anchor="center")
 
     center_window(window)
 
