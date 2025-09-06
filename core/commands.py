@@ -1,17 +1,20 @@
 import os
 import platform
 
-def shutdown_windows(timer):
-    os.system(f"shutdown /s /t {timer}")
+def shutdown_windows(timer: int) -> str:
+    return f"shutdown /s /t {timer}"
 
-def abort_windows():
-    os.system("shutdown /a")
+def abort_windows() -> str:
+    return "shutdown /a"
 
-def shutdown_linux(timer):
-    os.system(f"sudo shutdown -h {timer}")
+def shutdown_linux(timer: int) -> str:
+    return f"sudo shutdown -h {timer}"
 
-def abort_linux():
-    os.system("sudo shutdown -c")
+def abort_linux() -> str:
+    return "sudo shutdown -c"
 
-def current_os():
+def execute_command(command: str):
+    os.system(command)
+
+def current_os() -> str:
     return platform.system()

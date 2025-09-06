@@ -24,11 +24,12 @@ def create_os_windows(app, title, os_name):
         if messagebox.askokcancel("Shutdown", "Do you really want to shutdown?"):
             if platform_utils.ensure_os(os_name):
                 if os_name == "Windows":
-                    commands.shutdown_windows(timer)
+                    cmd = commands.shutdown_windows(timer)
                 else:
-                    commands.shutdown_linux(timer)
+                    cmd = commands.shutdown_linux(timer)
             else:
                 platform_utils.show_worng_os_error()
+        commands.execute_command(cmd)
 
     def abort():
         if messagebox.askokcancel("Abort shutdown", "Do you really want to abort shutdown?"):
